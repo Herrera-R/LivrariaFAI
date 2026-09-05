@@ -1,0 +1,7 @@
+.db
+.sqlite
+.sqlite3
+.log
+
+/data/
+/mysql_data/
