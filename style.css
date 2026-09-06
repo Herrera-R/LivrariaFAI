@@ -400,4 +400,7 @@ select[multiple] option:checked {
     color: var(--gold-accent);
 }
 
-
+.city-state-group {
+    display: flex;
+    gap: 10px;
+}
