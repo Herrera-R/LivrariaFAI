@@ -1,3 +1,9 @@
+<?php
+// Ativa exibição de erros para diagnosticar se algo quebrar
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -21,14 +27,14 @@
                 <h1 style="font-size: 28px;">Cadastrar Novo Livro</h1>
                 <p>Insira os dados técnicos do exemplar para adicioná-lo ao acervo</p>
             </div>
-            
+
+            <!-- Exibe mensagem de erro caso o backend retorne alguma falha -->
             <?php if(isset($_GET['erro'])): ?>
                 <div style="background-color: #ffdddd; color: #a94442; padding: 12px; border: 1px solid #ebccd1; border-radius: 4px; margin-bottom: 20px; font-size: 14px;">
                     <strong>Erro:</strong> <?php echo htmlspecialchars($_GET['erro']); ?>
                 </div>
             <?php endif; ?>
          
-          
             <form action="processar_livro.php" method="POST">
                 
                 <div class="form-group">
@@ -37,7 +43,6 @@
                 </div>
 
                 <div class="form-row">
-              
                     <div class="form-group">
                         <label for="paginas">Número de Páginas</label>
                         <input type="number" id="paginas" name="paginas" min="1" required placeholder="Ex: 350">
@@ -50,7 +55,6 @@
                 </div>
 
                 <div class="form-row">
-                  
                     <div class="form-group">
                         <label for="edicao">Edição</label>
                         <input type="number" id="edicao" name="edicao" min="1" required placeholder="Ex: 2">
