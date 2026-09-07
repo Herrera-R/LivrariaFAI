@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -24,7 +36,7 @@
     <main class="main-container">
         <div class="section-header">
             <h2>Catálogo do Acervo</h2>
-            <a href="cadastrar_livro.html" class="btn-book-accent">+ Novo Livro</a>
+            <a href="cadastrar_livro.php" class="btn-book-accent">+ Novo Livro</a>
         </div>
 
         <div class="books-grid">

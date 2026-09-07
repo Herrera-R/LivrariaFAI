@@ -1,9 +1,15 @@
 <?php
-// Ativa exibição de erros para diagnosticar se algo quebrar
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+session_start();
+
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -28,7 +34,6 @@ error_reporting(E_ALL);
                 <p>Insira os dados técnicos do exemplar para adicioná-lo ao acervo</p>
             </div>
 
-            <!-- Exibe mensagem de erro caso o backend retorne alguma falha -->
             <?php if(isset($_GET['erro'])): ?>
                 <div style="background-color: #ffdddd; color: #a94442; padding: 12px; border: 1px solid #ebccd1; border-radius: 4px; margin-bottom: 20px; font-size: 14px;">
                     <strong>Erro:</strong> <?php echo htmlspecialchars($_GET['erro']); ?>

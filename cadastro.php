@@ -1,3 +1,7 @@
+<?php
+    require_once 'conexaobd.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,7 +18,7 @@
             <p>Cadastre-se para gerenciar seus empréstimos e leituras</p>
         </div>
         
-        <form action="index.html" method="POST">
+        <form action="processacadastro.php" method="POST">
 
             <div class="form-group">
                 <label for="nome">Nome Completo</label>
