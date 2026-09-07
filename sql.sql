@@ -1,8 +1,7 @@
---ATENÇÃO: UTILIZE O COMANDO ABAIXO SOZINHO PARA CRIAR O BANCO DE DADOS, POIS O MESMO NÃO EXISTE AINDA. CASO O BANCO DE DADOS JÁ EXISTA, COMENTE A LINHA ABAIXO E DESCOMENTE A LINHA SEGUINTE.
-CREATE DATABASE livrariafai
+-- ATENÇÃO: UTILIZE O COMANDO ABAIXO SOZINHO PARA CRIAR O BANCO DE DADOS, POIS O MESMO NÃO EXISTE AINDA. CASO O BANCO DE DADOS JÁ EXISTA, COMENTE A LINHA ABAIXO E DESCOMENTE A LINHA SEGUINTE.
+CREATE DATABASE livrariafai;
 
-
-
+USE livrariafai;
 
 CREATE TABLE  idiomas
 (
@@ -10,26 +9,17 @@ CREATE TABLE  idiomas
     nome VARCHAR(255) NOT NULL
 );
 
-
-
-
 CREATE TABLE  autores
 (
     cod_autor INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL
 );
 
-
-
-
 CREATE TABLE  editoras
 (
     cod_editora INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL
 );
-
-
-
 
 CREATE TABLE  cidades
 (
@@ -38,9 +28,6 @@ CREATE TABLE  cidades
     uf CHAR(2) NOT NULL
 );
 
-
-
-
 CREATE TABLE cat_usuarios
 (
     cod_cat INT AUTO_INCREMENT PRIMARY KEY,
@@ -48,9 +35,6 @@ CREATE TABLE cat_usuarios
     n_dias INT NOT NULL,
     n_exemplares INT NOT NULL
 );
-
-
-
 
 CREATE TABLE usuarios
 (
@@ -66,9 +50,6 @@ CREATE TABLE usuarios
         FOREIGN KEY (cod_cidade) REFERENCES cidades(cod_cidade)
 );
 
-
-
-
 CREATE TABLE livros (
     cod_livro INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
@@ -81,9 +62,6 @@ CREATE TABLE livros (
     esta_emprestado BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-
-
-
 CREATE TABLE LI (
     cod_livro INT NOT NULL,
     cod_idioma INT NOT NULL,
@@ -94,9 +72,6 @@ CREATE TABLE LI (
         FOREIGN KEY (cod_idioma) REFERENCES idiomas(cod_idioma)
 );
 
-
-
-
 CREATE TABLE LA (
     cod_livro INT NOT NULL,
     cod_autor INT NOT NULL,
@@ -106,9 +81,6 @@ CREATE TABLE LA (
     CONSTRAINT fk_LA_autores
         FOREIGN KEY (cod_autor) REFERENCES autores(cod_autor)
 );
-
-
-
 
 CREATE TABLE emprestimos (
     cod_emprestimo INT AUTO_INCREMENT PRIMARY KEY,
