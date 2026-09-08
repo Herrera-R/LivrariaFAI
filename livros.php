@@ -29,7 +29,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                 
                 <span style="color: var(--gold-accent); font-size: 12px;"></span>
             </div>
-            <a href="index.html" class="btn-logout">Sair</a>
+            <a href="logout.php" class="btn-logout">Sair</a>
         </div>
     </nav>
 
