@@ -17,6 +17,12 @@
             <h1>Criar Nova Conta</h1>
             <p>Cadastre-se para gerenciar seus empréstimos e leituras</p>
         </div>
+
+        <?php if(isset($_GET['erro'])): ?>
+            <div style="background-color: #ffdddd; color: #a94442; padding: 12px; border: 1px solid #ebccd1; border-radius: 4px; margin-bottom: 20px; font-size: 14px;">
+                <strong>Erro:</strong> <?php echo htmlspecialchars($_GET['erro']); ?>
+            </div>
+        <?php endif; ?>
         
         <form action="processacadastro.php" method="POST">
 
@@ -26,7 +32,6 @@
             </div>
 
             <div class="form-row">
-   
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" name="email" required placeholder="joao@email.com">
@@ -39,7 +44,6 @@
             </div>
 
             <div class="form-row">
-                
                 <div class="form-group">
                     <label for="cod_cat">Categoria de Assinante</label>
                     <select id="cod_cat" name="cod_cat" required>
@@ -63,7 +67,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <button type="submit" class="btn-book-primary">Finalizar Meu Cadastro</button>
