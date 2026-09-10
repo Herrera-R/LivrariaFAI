@@ -7,6 +7,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
     session_destroy();
     header("Location: login.php");
     exit;
+}
 
 ?>
 
@@ -24,10 +25,8 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
         <a href="#" class="brand">Livraria</a>
         <div class="nav-user">
             <div class="user-info">
-        
-                <strong></strong>
-                
-                <span style="color: var(--gold-accent); font-size: 12px;"></span>
+                <strong><?php echo htmlspecialchars($_SESSION['usuario_nome'] ?? 'Usuário'); ?></strong>
+                <span style="color: var(--gold-accent); font-size: 12px;"><?php echo htmlspecialchars($_SESSION['usuario_perfil'] ?? ''); ?></span>
             </div>
             <a href="logout.php" class="btn-logout">Sair</a>
         </div>
@@ -40,7 +39,6 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
         </div>
 
         <div class="books-grid">
-
 
         </div>
     </main>
