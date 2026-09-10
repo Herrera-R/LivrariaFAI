@@ -39,7 +39,8 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                 </div>
             <?php endif; ?>
          
-            <form action="processar_livro.php" method="POST">
+            <!-- CORREÇÃO DO ERRO 404: Apontando exatamente para o arquivo correto -->
+            <form action="processar_cadastro_livro.php" method="POST">
                 
                 <div class="form-group">
                     <label for="titulo">Título do Livro</label>
