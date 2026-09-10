@@ -1,24 +1,26 @@
 <?php
 session_start();
 
-// Importa a classe de conexão já disponibilizada no projeto
 require_once "conexaobd.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $emailInformado = $_POST['email'] ?? '';
-    $senhaInformada   = $_POST['senha']   ?? '';
+    $senhaInformada = $_POST['senha'] ?? '';
 
-    // Aplica o hash MD5 na senha digitada para comparar com o padrão do banco
     $senhaHash = md5($senhaInformada);
 
     try {
         $conexaoClasse = new Conexao();
         $pdo = $conexaoClasse->conectar();
 
-        $sql = "SELECT * FROM usuarios
-                WHERE email = :email
-                  AND senha   = :senha LIMIT 1";
+        // Busca o usuário e a descrição da categoria vinculada
+        $sql = "SELECT u.cod_usuario, u.nome, u.email, c.descricao AS perfil 
+                FROM usuarios u
+                LEFT JOIN cat_usuarios c ON u.cod_cat = c.cod_cat
+                WHERE u.email = :email
+                  AND u.senha = :senha 
+                LIMIT 1";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":email", $emailInformado);
@@ -28,19 +30,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->rowCount() == 1) {
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // As chaves seguem exatamente os nomes das colunas da tabela
-            $_SESSION['email']   = $usuario['email'];
-            $_SESSION['nome_usuario'] = $usuario['Nome'];
-            $_SESSION['logado']       = true;
+            // Grava nas variáveis exatamente como o front-end espera
+            $_SESSION['logado']         = true;
+            $_SESSION['usuario_id']     = $usuario['cod_usuario'];
+            $_SESSION['usuario_nome']   = $usuario['nome']; // 'nome' em minúsculo igual ao BD
+            $_SESSION['usuario_perfil'] = $usuario['perfil'];
+            $_SESSION['email']          = $usuario['email'];
 
-            // Redireciona para a página restrita do sistema
             header("Location: livros.php");
             exit;
 
         } else {
-            // Falha na autenticação
-            $_SESSION['erro'] = "Usuário ou senha inválidos!";
-            header("Location: index.html");
+            header("Location: login.php?erro=" . urlencode("Usuário ou senha inválidos!"));
             exit;
         }
 
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 } else {
-    header("Location: index.html");
+    header("Location: login.php");
     exit;
 }
 ?>
