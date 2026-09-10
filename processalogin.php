@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $conexaoClasse = new Conexao();
         $pdo = $conexaoClasse->conectar();
 
-        // Busca o usuário e a descrição da sua categoria no banco via PDO
         $sql = "SELECT u.cod_usuario, u.nome, u.email, c.descricao AS perfil 
                 FROM usuarios u 
                 LEFT JOIN cat_usuarios c ON u.cod_cat = c.cod_cat 
