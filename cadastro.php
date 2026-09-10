@@ -45,14 +45,9 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="cod_cat">Categoria de Assinante</label>
-                    <select id="cod_cat" name="cod_cat" required>
-                        <option value="" disabled selected>Selecione seu perfil...</option>
-                        <option value="1">Leitor Casual (Até 14 dias / 2 exemplares)</option>
-                        <option value="2">Entusiasta / Clubes de Leitura (Até 21 dias / 4 exemplares)</option>
-                        <option value="3">Pesquisador / Acadêmico (Até 30 dias / 6 exemplares)</option>
-                        <option value="4">Membro Premium (Até 45 dias / 8 exemplares)</option>
-                    </select>
+                    
+                    <label for="categoria_nome">Categoria de Assinante</label>
+                    <input type="text" id="categoria_nome" name="categoria_nome" required placeholder="Ex: Leitor Casual, Premium, Acadêmico">
                 </div>
 
                 <div class="form-group">
